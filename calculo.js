@@ -45,5 +45,27 @@ function perimetroCirculo(radio) {
   return diametro * PI;
 }
 
-
 console.groupEnd()
+
+//aqui interactuamos con el HTML
+function calcularPerimetroCuadrado() {
+  const input = document.getElementById("inputCuadrado");
+  const value = input.value;
+
+  const perimetro = perimetroCuadrado(value);
+  alert(perimetro)
+
+  const area = areaCuadrado(value)
+  alert(area)
+}
+
+//altura triangulo isosceles
+function alturaIsosceles(lado1, lado2, base) {
+  if (lado1 == lado2 && lado1 != base) {
+    const altura = Math.sqrt(lado1 ** 2 - (base ** 2 / 4))
+    console.log(altura)
+  } else {
+    alert("no es un triangulo isosceles")
+  }
+}
+// altura(6, 5, 4)
