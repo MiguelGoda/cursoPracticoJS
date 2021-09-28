@@ -12,36 +12,46 @@ function CalcularPrecioConDescuento(precio, descuento) {
 }
 
 const coupons = [
-  "JuanDC_es_Batman",
-  "pero_no_le_digas_a_nadie",
-  "es_un_secreto"
+  {
+    name: "JuanDC_es_Batman",
+    discount: 15,
+  },
+  {
+    name: "pero_no_le_digas_a_nadie",
+    discount: 30,
+  },
+  {
+    name: "es_un_secreto",
+    discount: 25,
+  },
 ];
+
+
 
 function onClickButtonPriceDiscount() {
   const inputPrice = document.getElementById("InputPrice");
   const priceValue = inputPrice.value;
 
-
   const inputCoupon = document.getElementById("InputCoupon")
   const couponValue = inputCoupon.value;
 
-  let descuento;
-
-  if(!coupons.includes(couponValue)) {
-    alert("El cupon " + couponValue + " no es valido")
-  } else if (couponValue === "JuanDC_es_Batman" ) {
-    descuento = 15;
-  } else if ( couponValue === "pero_no_le_digas_a_nadie") {
-    descuento = 30;
-  } else if ("es_un_secreto") {
-    descuento = 25;
+  const isCouponValueValid = function (coupon) {
+    return coupon.name === couponValue;
   }
 
-  const precioConDescuento = CalcularPrecioConDescuento(priceValue, descuento);
+  const userCoupon = coupons.find(isCouponValueValid);
+
+  if(!userCoupon) {
+    alert("El cupon " + couponValue + " no es valido")
+  } else {
+    const descuento = userCoupon.discount;
+    const precioConDescuento = CalcularPrecioConDescuento(priceValue, descuento);
 
   const resultP = document.getElementById("ResultP");
 
   resultP.innerText = "El resultado es: $" + precioConDescuento
+  }
+
 
 }
 
