@@ -27,16 +27,14 @@ function onClickButtonPriceDiscount() {
 
   let descuento;
 
-  switch(couponValue) {
-    case coupons[0]: //"JuanDC_es_Batman"
-      descuento = 15;
-    break;
-    case coupons[1]: //"pero_no_le_digas_a_nadie"
-      descuento = 30;
-    break;
-    case coupons[2]: //"es_un_secreto"
-      descuento = 25;
-    break;
+  if(!coupons.includes(couponValue)) {
+    alert("El cupon " + couponValue + " no es valido")
+  } else if (couponValue === "JuanDC_es_Batman" ) {
+    descuento = 15;
+  } else if ( couponValue === "pero_no_le_digas_a_nadie") {
+    descuento = 30;
+  } else if ("es_un_secreto") {
+    descuento = 25;
   }
 
   const precioConDescuento = CalcularPrecioConDescuento(priceValue, descuento);
